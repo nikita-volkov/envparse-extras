@@ -1,0 +1,99 @@
+cabal-version: 3.8
+name: envparse-extras
+version: 0
+synopsis: Helpers for the envparse library
+description:
+homepage: https://github.com/nikita-volkov/envparse-extras
+bug-reports: https://github.com/nikita-volkov/envparse-extras/issues
+author: Nikita Volkov <nikita.y.volkov@mail.ru>
+maintainer: Nikita Volkov <nikita.y.volkov@mail.ru>
+copyright: (c) 2024, Nikita Volkov
+license: MIT
+license-file: LICENSE
+
+source-repository head
+  type: git
+  location: git://github.com/nikita-volkov/envparse-extras.git
+
+common base
+  default-language: Haskell2010
+  default-extensions:
+    ApplicativeDo
+    BangPatterns
+    BinaryLiterals
+    BlockArguments
+    ConstraintKinds
+    DataKinds
+    DefaultSignatures
+    DeriveDataTypeable
+    DeriveFoldable
+    DeriveFunctor
+    DeriveGeneric
+    DeriveTraversable
+    DerivingVia
+    DuplicateRecordFields
+    EmptyCase
+    EmptyDataDecls
+    FlexibleContexts
+    FlexibleInstances
+    FunctionalDependencies
+    GADTs
+    GeneralizedNewtypeDeriving
+    HexFloatLiterals
+    ImportQualifiedPost
+    LambdaCase
+    LiberalTypeSynonyms
+    MultiParamTypeClasses
+    MultiWayIf
+    NamedFieldPuns
+    NoFieldSelectors
+    NoImplicitPrelude
+    NoMonomorphismRestriction
+    NumericUnderscores
+    OverloadedLabels
+    OverloadedRecordDot
+    OverloadedStrings
+    ParallelListComp
+    PatternGuards
+    PatternSynonyms
+    QuasiQuotes
+    RankNTypes
+    RecordWildCards
+    ScopedTypeVariables
+    StandaloneDeriving
+    StrictData
+    TemplateHaskell
+    TupleSections
+    TypeApplications
+    TypeFamilies
+    TypeOperators
+    UndecidableInstances
+    ViewPatterns
+
+common test
+  import: base
+  ghc-options:
+    -threaded
+    "-with-rtsopts=-I0 -qg"
+
+common executable
+  import: base
+  ghc-options:
+    -O2
+    -threaded
+    "-with-rtsopts=-N -I0 -qg"
+
+library
+  import: base
+  hs-source-dirs: library
+  exposed-modules:
+    EnvparseExtras.Parsers
+
+  build-depends:
+    attoparsec ^>=0.14.4,
+    attoparsec-time ^>=1.0.3.1,
+    base >=4.15 && <5,
+    envparse ^>=0.6,
+    relude ^>=1.2.2,
+    text-builder-dev ^>=0.3.6,
+    time >=1.12 && <2,
